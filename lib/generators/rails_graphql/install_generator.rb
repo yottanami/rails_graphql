@@ -15,6 +15,11 @@ module RailsGraphql
       end
     end
 
+
+    def migrate_db
+      rake 'db:migrate'
+    end
+
     private
     def install_authentication
       puts self.behavior
@@ -38,18 +43,22 @@ module RailsGraphql
       end
     end
 
+    def show_readme
+      readme 'README' if behavior == :invoke
+    end
+
     private
 
     def install_devise
       gem 'devise'
-      generate "devise:instal"
-      generate("devise", "user")
+      generate "devise:install"
       # config/environments/development.rb
       # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
     end
 
-    def install_otp
-
+    def install_devise_user
+      # TODO: Ask about the name
+      generate("devise", "user")
     end
 
   end
