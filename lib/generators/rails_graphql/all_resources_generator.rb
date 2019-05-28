@@ -1,30 +1,42 @@
 module RailsGraphql
   class AllResourcesGenerator < Rails::Generators::Base
 
-
     def load_models
-      ignore_columns = ['created_at', 'updated_at']
-      ignore_models = []
-      field_types = {
-        id: 'ID',
-        integer: 'Integer',
-        float: 'Float',
-        string: 'String',
-        date_time: 'ISO8601DateTime',
-        time: 'ISO8601DateTime',
-        date: 'ISO8601DateTime',
-        boolean: 'Boolean'
-      }
-
       # @models = ApplicationRecord.descendants[0].columns_hash
-      @models = ApplicationRecord.descendants
-      @models.each do |model|
-        generator_str = " "
-        model.columns.each do |clmn|
-          generator_str += "#{clmn.name}:#{field_types[clmn.type]} " unless ignore_columns.include? clmn.name
-        end
-      end
+      @models =   Dir.glob("#{Rails.root}/app/models/*.rb").map{|x| x.split("/").last.split(".").first.camelize}
     end
 
+    def generate_types
+      ignore_columns = ['created_at', 'updated_at']
+      ignore_models = ['User', 'ApplicationRecord']
+      field_types = {
+        integer: 'Integer',
+        float: 'Float',
+        decimal: 'Float',
+        string: 'String',
+        text: 'String',
+        boolean: 'Boolean',
+        binary: 'Binary',
+        datetime: 'ISO8601DateTime',
+        time: 'ISO8601DateTime',
+        date: 'ISO8601DateTime',
+        timestamp: 'String',
+        json: 'Json'
+      }
+
+      @models.each do |model|
+        model = model.constantize
+        next if ignore_models.include? model.name
+        generator_str = ""
+        model.columns.each do |clmn|
+          unless ignore_columns.include? clmn.name
+            type = clmn.name == 'id' ? 'ID': field_types[clmn.type]
+            generator_str += "#{clmn.name}:#{type} "
+          end
+        end
+        generate "graphql:object #{ model } #{ generator_str }"
+      end
+
+    end
   end
 end
