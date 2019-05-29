@@ -1,0 +1,30 @@
+module Mutations
+class Create<%= @resource_name.camelize %> < GraphQL::Schema::RelayClassicMutation
+
+<% @fields.each do |field| %>
+  field :<%= field.name %>, Types::<%= field.name %>, null: false
+<% end %>
+
+<% @arguments.each do |arg| %>
+  argument :<%= arg.name%>, <%= arg.type %>, required: false
+<% end %>
+
+  def resolve(title:, body:, image:, video:, category_id:)
+    item = <%= @resource_name.camelize %>.new(
+    <% @arguments.each do |arg | %>
+      <%= arg.to_sym %>  <%= arg %>
+    <% end %>
+    )
+    if item.save
+      {
+      <%= @resource_name %>: item,
+      errors: [],
+      }
+    else
+      {
+      <%= @resource_name %>: nil,
+       errors: item.errors.full_messages
+      }
+    end
+  end
+end

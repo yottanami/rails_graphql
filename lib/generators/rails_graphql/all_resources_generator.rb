@@ -35,6 +35,7 @@ module RailsGraphql
           end
         end
         generate "graphql:object #{ model } #{ generator_str }"
+        generate "graphql:mutation create_#{ model }"
       end
 
     end
