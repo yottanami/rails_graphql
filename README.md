@@ -1,35 +1,38 @@
 # RailsGraphql
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails_graphql`. To experiment with that code, run `bin/console` for an interactive prompt.
+RailsGraphql is a Ruby on Rails Gem that will help you use Graphql in your project easier.
+By adding this gem to your project it will create all requirements and dependencies.
+You can use the railsgraphql generators to create Graphql resources from the model.
 
-TODO: Delete this and the text above, and describe your gem
-
+This project is under development and not completed yet.
 ## Installation
-
+Clone or download this project on your local machine.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rails_graphql'
+gem 'rails_graphql', src: PATH_OF_THIS_PROJECT
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install rails_graphql
+No you can complete the installation process using this generator:
+```rails_graphql:install```
 
 ## Usage
+There are couple of generators can help you to add graphql in your project.
 
-TODO: Write usage instructions here
+If you want to create everything from model you can use this generator.
+```rails_graphql:all_resources```
 
-## Development
+If you need to create mutation for models or specific model, you can use this generator.
+If you do not specify the model name it will careate mutation for all models.
+```rails_graphql:mutation```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+and using this generator you can create resources
+```rails_graphql:resource```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
-
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rails_graphql.
