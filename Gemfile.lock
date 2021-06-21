@@ -112,7 +112,7 @@ DEPENDENCIES
   bundler (~> 2.0)
   graphiql-rails (~> 1.7)
   rails_graphql!
-  rake (~> 10.0)
+  rake (~> 13.0)
   rspec (~> 3.0)
 
 BUNDLED WITH
