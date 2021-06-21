@@ -37,12 +37,12 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rspec", "~> 3.10"
 
   # Gem Dependencies
   spec.add_development_dependency "graphiql-rails", "~> 1.7"
 
-  spec.add_dependency "apollo_upload_server", "~> 2.0.0.beta.1"
-  spec.add_dependency "graphql", "~> 1.7"
-  spec.add_dependency "devise", "~> 4.6"
+  spec.add_dependency "apollo_upload_server", "~> 2.0.5"
+  spec.add_dependency "graphql", "~> 1.12.12"
+  spec.add_dependency "devise", "~> 4.8"
 end
